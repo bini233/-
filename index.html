@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAEGU · TRAVEL NOTES</title>
+  <meta property="og:title" content="대구 여행을 가요우">
+  <meta property="og:description" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --ink: #000000;
+      --accent: #FF0000;
+      --bw: 1.5px; /* Border width */
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); }
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--ink);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      font-size: 15px;
+    }
+    button, input, select, textarea { font-family: inherit; }
+    a { color: inherit; }
+
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    /* === Header === */
+    header { border-bottom: var(--bw) solid var(--ink); padding-bottom: 32px; margin-bottom: 32px; }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 32px;
+      height: var(--bw);
+      background: var(--ink);
+    }
+    .title-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(52px, 8vw, 88px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      padding-right: 24px;
+    }
+    h1 .accent {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    /* Red Dot Accent */
+    .title-wrapper::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 12px;
+      width: 14px;
+      height: 14px;
+      background-color: var(--accent);
+      border-radius: 50%;
+    }
+    .subtitle {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      max-width: 560px;
+    }
+
+    .user-bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: transparent;
+      padding: 12px 18px;
+      border: var(--bw) solid var(--ink);
+      margin-top: 32px;
+      max-width: 460px;
+    }
+    .user-bar label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .user-bar input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      outline: none;
+      min-width: 0;
+    }
+    .user-bar .status {
+      font-size: 11px;
+      color: var(--ink);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    /* === Setup notice === */
+    .setup-notice {
+      background: transparent;
+      border: var(--bw) solid var(--ink);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .setup-notice code {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 2px 7px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+    }
+
+    /* === Stats === */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin: 0 0 32px;
+      padding: 24px;
+      background: transparent;
+      border: var(--bw) solid var(--ink);
+    }
+    .stat {
+      padding: 0 20px;
+      border-right: var(--bw) solid var(--ink);
+    }
+    .stat:first-child { padding-left: 0; }
+    .stat:last-child { border-right: none; padding-right: 0; }
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* === Tag bar === */
+    .tag-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .tag-btn {
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border: var(--bw) solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+    }
+    .tag-btn:hover { background: rgba(0,0,0,0.05); }
+    .tag-btn.active {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .tag-btn .count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* === Main layout === */
+    .main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+    .list-col {
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      padding-right: 8px;
+      scrollbar-width: none; /* Hide scrollbar for cleaner look */
+    }
+    .list-col::-webkit-scrollbar { display: none; }
+
+    .map-col {
+      position: sticky;
+      top: 24px;
+    }
+    .map-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      display: block;
+      border-bottom: var(--bw) solid var(--ink);
+      padding-bottom: 8px;
+    }
+    #map {
+      width: 100%;
+      height: calc(100vh - 90px);
+      border: var(--bw) solid var(--ink);
+      background: transparent;
+    }
+    .map-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: calc(100vh - 90px);
+      border: var(--bw) dashed var(--ink);
+      background: transparent;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      padding: 24px;
+    }
+
+    /* === Card === */
+    .card {
+      background: transparent;
+      border: var(--bw) solid var(--ink);
+      padding: 24px 20px;
+      margin-bottom: 16px;
+      transition: background 0.12s ease;
+      scroll-margin-top: 24px;
+    }
+    .card.highlighted {
+      background: rgba(0,0,0,0.04);
+    }
+    .card-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--ink);
+      display: inline-block;
+    }
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    /* Numbered Circle ①②③ Style */
+    .card-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--ink);
+      color: var(--bg);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .card-title {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      flex: 1;
+      line-height: 1.2;
+    }
+    .card-tag {
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border: var(--bw) solid var(--ink);
+      background: transparent;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .card-address {
+      font-size: 14px;
+      font-weight: 600;
+      margin-left: 36px;
+      margin-bottom: 10px;
+    }
+    .card-desc {
+      font-size: 15px;
+      margin-left: 36px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      margin-left: 36px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .vote-btn, .comment-toggle {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      background: transparent;
+      border: var(--bw) solid var(--ink);
+      cursor: pointer;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .vote-btn:hover, .comment-toggle:hover { background: rgba(0,0,0,0.05); }
+    .vote-btn.voted {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .vote-btn .count, .comment-toggle .count {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .voters {
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 8px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .kakao-link {
+      margin-left: auto;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+    }
+    .kakao-link:hover { background: var(--ink); color: var(--bg); }
+
+    /* === Comments === */
+    .comments {
+      margin: 20px 0 0 36px;
+      padding: 20px;
+      background: transparent;
+      border: var(--bw) solid var(--ink);
+      display: none;
+    }
+    .comments.open { display: block; }
+    .comments-empty {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 0 12px;
+    }
+    .comment {
+      font-size: 14px;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--ink);
+    }
+    .comment:last-of-type { border-bottom: none; padding-bottom: 0; }
+    .comment-author {
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .comment-meta {
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 10px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .comment-body { margin-top: 6px; }
+    .comment-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .comment-form input {
+      flex: 1;
+      border: var(--bw) solid var(--ink);
+      background: transparent;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      outline: none;
+      min-width: 0;
+    }
+    .comment-form button {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 18px;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 80px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      border: var(--bw) dashed var(--ink);
+    }
+
+    /* === Suggest section === */
+    .suggest-section {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: var(--bw) solid var(--ink);
+    }
+    .suggest-section h2 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .suggest-section h2 .accent {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+    .suggest-section .subtitle { margin-bottom: 32px; font-weight: 600; }
+
+    .suggest-form {
+      background: transparent;
+      border: var(--bw) solid var(--ink);
+      padding: 28px;
+      margin-bottom: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .suggest-form .full { grid-column: 1 / -1; }
+    .suggest-form label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .suggest-form input,
+    .suggest-form select,
+    .suggest-form textarea {
+      width: 100%;
+      border: var(--bw) solid var(--ink);
+      background: transparent;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 500;
+      outline: none;
+      resize: vertical;
+      color: var(--ink);
+    }
+    .suggest-form button {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      justify-self: start;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .suggest-form button:hover { opacity: 0.9; }
+
+    .suggestions-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .suggestion-card {
+      background: transparent;
+      border: var(--bw) solid var(--ink);
+      padding: 24px;
+      position: relative;
+    }
+    .suggestion-card::before {
+      content: '+';
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-family: 'Instrument Serif', serif;
+      font-size: 40px;
+      line-height: 1;
+    }
+    .sg-name {
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      padding-right: 32px;
+      letter-spacing: -0.01em;
+    }
+    .sg-meta {
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 6px;
+      display: inline-block;
+    }
+    .sg-addr {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      margin-top: 6px;
+    }
+    .sg-desc {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* === Toast === */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: var(--bg);
+      padding: 14px 28px;
+      font-weight: 700;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.18s, transform 0.18s;
+      pointer-events: none;
+      z-index: 1000;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(-8px); }
+
+    /* === Footer === */
+    footer {
+      margin-top: 100px;
+      padding-top: 32px;
+      border-top: var(--bw) solid var(--ink);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* === Responsive === */
+    @media (max-width: 900px) {
+      .main { grid-template-columns: 1fr; }
+      .map-col {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background: var(--bg);
+        padding: 16px 0;
+        margin: 0;
+      }
+      #map, .map-placeholder { height: 400px; }
+      .list-col { max-height: none; overflow: visible; padding-right: 0; }
+      .suggest-form { grid-template-columns: 1fr; }
+      .stats { padding: 20px; }
+      .stat { padding: 0 16px; }
+    }
+    @media (max-width: 480px) {
+      .wrap { padding: 24px 16px 60px; }
+      .stat-num { font-size: 28px; }
+      .card { padding: 20px 16px; }
+      .card-address, .card-desc, .card-actions, .comments { margin-left: 0; }
+      .card-head { margin-bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">DAEGU · TRAVEL NOTES</div>
+      <div class="title-wrapper">
+        <h1>대구 여행을 가요우</h1>
+      </div>
+      <p class="subtitle">가고 싶으면 조아요 누르고 추가하고 싶으면 추가 가능</p>
+      <div class="user-bar">
+        <label>NAME</label>
+        <input id="userName" placeholder="닉네임" maxlength="20" autocomplete="off">
+        <span class="status" id="userStatus"></span>
+      </div>
+    </header>
+
+    <div id="setupNotice" class="setup-notice" style="display:none;">
+      [ SETUP REQUIRED ] 코멘트/투표를 공유하려면 HTML 상단의 <code>SUPABASE_URL</code>과 <code>SUPABASE_ANON_KEY</code>를 채워줘.
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num" id="totalCount">0</div>
+        <div class="stat-label">TOTAL PLACES</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="myVotesCount">0</div>
+        <div class="stat-label">MY VOTES</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="allVotesCount">0</div>
+        <div class="stat-label">FRIEND VOTES</div>
+      </div>
+    </div>
+
+    <div class="tag-bar" id="tagBar"></div>
+
+    <div class="main">
+      <div class="list-col" id="listCol"></div>
+      <div class="map-col">
+        <span class="map-label">MAP / LIVE</span>
+        <div id="map"></div>
+      </div>
+    </div>
+
+    <section class="suggest-section">
+      <h2>친구들 <span class="accent">추천</span></h2>
+      <p class="subtitle">목록에 없는데 가고 싶은 곳이 있다면 여기 써주세용.</p>
+
+      <div class="suggest-form">
+        <div>
+          <label>PLACE NAME</label>
+          <input id="sgName" placeholder="예: 세연콩국" maxlength="40">
+        </div>
+        <div>
+          <label>CATEGORY TAG</label>
+          <select id="sgTag">
+            <option value="">선택</option>
+            <option>완구</option>
+            <option>오타쿠</option>
+            <option>밥먹자!</option>
+            <option>좀만 쉬자…</option>
+            <option>인문학적 소양..</option>
+            <option>기타</option>
+          </select>
+        </div>
+        <div class="full">
+          <label>ADDRESS (OPTIONAL)</label>
+          <input id="sgAddress" placeholder="대구 중구 ..." maxlength="120">
+        </div>
+        <div class="full">
+          <label>DESCRIPTION</label>
+          <textarea id="sgDesc" rows="2" placeholder="특징을 적어주세요 . . ." maxlength="300"></textarea>
+        </div>
+        <div class="full">
+          <button id="sgSubmit">SUBMIT PLACE</button>
+        </div>
+      </div>
+
+      <div class="suggestions-list" id="suggestionsList"></div>
+    </section>
+
+    <footer>
+      <span>MADE WITH ♥ FOR DAEGU TRIP</span>
+      <span id="syncStatus">OFFLINE</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    /* ===================================================== */
+    /* 설정 - 여기 3개 채우면 끝                             */
+    /* ===================================================== */
+    const KAKAO_KEY        = 'a01a57e98c38ee96af626ff6a3f44fde';
+    const SUPABASE_URL     = 'https://fbcyjdbetdflikmwnukx.supabase.co/rest/v1/';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZiY3lqZGJldGRmbGlrbXdudWt4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4MjMyMzYsImV4cCI6MjA5ODM5OTIzNn0.JMXFwjBRBz9bIguofAABYhdnV9l16TGFvSGQBHYpQnc';
+    /* ===================================================== */
+
+    const places = [
+    { "id": "p01", "name": "우일완구사", "address": "대구 북구 칠성시장로7길 25", "description": "말랑이, 장난감 많음, 지하부터 2층까지, 산리오, 먼작귀", "tag": "완구" },
+    { "id": "p02", "name": "초록별", "address": "대구 북구 공평로 129", "description": "말랑이, 헬로키티, 옛날 감성", "tag": "완구" },
+    { "id": "p03", "name": "플란다스의 곰", "address": "대구 중구 서성로14길 74 2층", "description": "헬로키티, 장난감, 빈티지샵, 산리오, 다락방 느낌", "tag": "완구" },
+    { "id": "p04", "name": "신기루잡화점 소품샵", "address": "대구 중구 서성로14길 92", "description": "한옥 안의 소품샵, 랜덤 상품은 겉에 있는 샘플로 교환이나 샘플 구매도 가능, 사람 개많음", "tag": "완구" },
+    { "id": "p05", "name": "애니세카이 대구점", "address": "대구광역시 중구 삼덕동1가 18-11 2층", "description": "오타쿠", "tag": "오타쿠" },
+    { "id": "p06", "name": "브라더굿즈 가챠 대구동성로점", "address": "대구광역시 중구 동성로2가 159-3 2층, 3층", "description": "가챠 많음", "tag": "오타쿠" },
+    { "id": "p07", "name": "아니메굿즈", "address": "대구광역시 중구 동성로3가 31-1 지하 1층", "description": "피규어, 치비구루미, 쿠지", "tag": "오타쿠" },
+    { "id": "p08", "name": "심플책방", "address": "대구 동구 동부로34길 4 지하 1층", "description": "독립서점", "tag": "인문학적 소양.." },
+    { "id": "p09", "name": "동아식당", "address": "대구 중구 국채보상로125길 14", "description": "제일 유명한 식당, 줄 엄청 길대", "tag": "밥먹자!" },
+    { "id": "p10", "name": "팔공막창", "address": "대구 중구 동성로6길 46", "description": "생막창, 근데 그다지 통실해보이지 않아, 냄새 조금 난대", "tag": "밥먹자!" },
+    { "id": "p11", "name": "영원미학", "address": "대구 중구 경상감영길 227 4층", "description": "음료 맛은 그냥 그렇고 오타쿠 분위기 많이 난대", "tag": "좀만 쉬자…" },
+    { "id": "p12", "name": "난초네츠보", "address": "대구 중구 동성로3길 28 4층", "description": "사장님이 공주님이라 불러준대, 음료 시키면 테이블 꾸며누신대, 근데 맛은 그냥 그렇대", "tag": "좀만 쉬자…" },
+    { "id": "p13", "name": "원피규어 대구2호점", "address": "대구 중구 동성로6길 44 2, 3층", "description": "피규어", "tag": "오타쿠" },
+    { "id": "p14", "name": "잇츠", "address": "대구 중구 동성로5길 11 2층", "description": "헬로키티랑 산리오 많대, 몬치치, 가챠", "tag": "오타쿠" },
+    { "id": "p15", "name": "킷사도토리", "address": "대구 중구 동성로1길 8 1, 2층", "description": "먼가 일식? 나폴리탄, 타마고산도, 메론소다", "tag": "밥먹자!" },
+    { "id": "p16", "name": "파티세리은", "address": "대구 중구 달구벌대로 2081-12 1층", "description": "무스케이크 전문 카페, 카페 엄청 귀엽고 복숭아무스케이크 안에 과육이 들어있대", "tag": "좀만 쉬자…" },
+    { "id": "p17", "name": "GEEHEY blank", "address": "대구 중구 경상감영길 175 3층", "description": "일단 감성있고, 가오있고, 꺼드럭대기 좋아보여", "tag": "완구" },
+    { "id": "p18", "name": "애니마켓", "address": "대구 중구 교동2길 39 2층", "description": "중고도 파는듯? 카드들을 개별로 팔고, 음…우리쪽은 아닌듯", "tag": "오타쿠" },
+    { "id": "p19", "name": "공터피규어애니 굿즈샵", "address": "대구 중구 교동2길 39 3층", "description": "피규어 중심 판매인듯, 가챠", "tag": "오타쿠" },
+    { "id": "p20", "name": "마이하루", "address": "대구 중구 교동1길 34 3층", "description": "캐캐체, 뱅드림, 오신령, 순정 고전 많은듯? 캐캐체 이야기 엄청 많아", "tag": "오타쿠" },
+    { "id": "p21", "name": "모와즐", "address": "대구 중구 경상감영길 170 지하1층", "description": "가챠, 피규어, 쿠지", "tag": "오타쿠" },
+    { "id": "p22", "name": "파샵", "address": "대구 중구 공평로 55 3층", "description": "리락쿠마, 미쿠, 케이온, 다꾸용 스티커, 고전 애니 많음", "tag": "오타쿠" },
+    { "id": "p23", "name": "히든토이 대구본점", "address": "대구 중구 동성로 23-1", "description": "가챠 엄청 많대, 산리오, 치이카와..등등 가챠 천국이라네?", "tag": "오타쿠" },
+    { "id": "p24", "name": "토이도", "address": "대구 중구 동성로1길 29-27 3층 토이도", "description": "피규어샵, 헌헌 나루토… 수빈아 네가 산거 여기 판다 피규어 2개 구매하면 5천원 할인해준대 지금…", "tag": "오타쿠" },
+    { "id": "p25", "name": "원피규어", "address": "대구 중구 동성로 8-1 지하 1층", "description": "가챠 가격 좋대, 피규어", "tag": "오타쿠" },
+    { "id": "p26", "name": "히든토이 대구2호점", "address": "대구 중구 중앙대로 394 2층", "description": "가챠 가격 디게 좋대, 엄청 깨끗해보임", "tag": "오타쿠" },
+    { "id": "p27", "name": "솜솜굿즈샵", "address": "대구 중구 중앙대로 391 2층 207호", "description": "중국 굿즈도 팔고 원화집도 있대 ㄷㄷ아 근데 중애니가 많은듯?", "tag": "오타쿠" },
+    { "id": "p28", "name": "물비늘", "address": "대구 중구 중앙대로 455-2 2층 1호", "description": "핀터 감성? 독특하고 귀여운 소품 많은거같아용", "tag": "완구" },
+    { "id": "p29", "name": "서문빙수 현대직영점", "address": "대구 중구 남성로 30-1 1층 서문빙수", "description": "나 빙수 먹고싶엉 근데! 여기 전화 또는 대구로 배달주문도 가능하대", "tag": "좀만 쉬자…" },
+    { "id": "p30", "name": "걸리버막창 동성로점", "address": "대구 중구 동성로4길 39 2층 걸리버막창 동성로점", "description": "마히게따", "tag": "밥먹자!" },
+    { "id": "p31", "name": "걸리버막창 종로점", "address": "대구 중구 종로 45-1 1층", "description": "마히게따", "tag": "밥먹자!" },
+    { "id": "p32", "name": "마코토", "address": "대구 중구 동성로2길 18-6", "description": "츠케멘", "tag": "밥먹자!" },
+    { "id": "p33", "name": "꿀방구", "address": "대구 중구 교동2길 37-9 1층", "description": "확정가챠, 일본 직수입 정품 가챠샵이래, 기여븐거 많은듯?", "tag": "오타쿠" },
+    { "id": "p34", "name": "세연콩국", "address": "대구 중구 명덕로 173", "description": "나 콩 좋아…", "tag": "밥먹자!" }
+    ];
+    const TAG_ORDER = ['완구', '오타쿠', '밥먹자!', '좀만 쉬자…', '인문학적 소양..'];
+
+    /* ---------- 상태 ---------- */
+    let supabase = null;
+    let votes = {};
+    let comments = {};
+    let suggestions = [];
+    let activeTag = 'all';
+    let coords = {};
+    let markers = {};
+    let map = null;
+    const hasSupabase = SUPABASE_URL && !SUPABASE_URL.startsWith('YOUR_') && SUPABASE_ANON_KEY && !SUPABASE_ANON_KEY.startsWith('YOUR_');
+    const hasKakao = KAKAO_KEY && !KAKAO_KEY.startsWith('YOUR_');
+
+    /* ---------- 사용자 ---------- */
+    const getUserName = () => (localStorage.getItem('daegu_user') || '').trim();
+    const setUserName = (v) => localStorage.setItem('daegu_user', v.trim());
+
+    function updateUserStatus() {
+      document.getElementById('userStatus').textContent = getUserName() ? '[ SAVED ]' : '';
+    }
+
+    /* ---------- 유틸 ---------- */
+    function escapeHtml(s) {
+      return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    function formatTime(iso) {
+      const d = new Date(iso);
+      const diff = (Date.now() - d.getTime()) / 1000;
+      if (diff < 60) return '방금';
+      if (diff < 3600) return Math.floor(diff/60) + '분 전';
+      if (diff < 86400) return Math.floor(diff/3600) + '시간 전';
+      if (diff < 86400*7) return Math.floor(diff/86400) + '일 전';
+      return d.toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' });
+    }
+    function cleanAddress(addr) {
+      return addr.replace(/\s+(지하\s*\d+층?|[\d,]+\s*층|\d+호).*$/, '').trim();
+    }
+    let toastTimer;
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    /* ---------- Kakao Maps ---------- */
+    function loadKakaoSDK() {
+      return new Promise((resolve, reject) => {
+        if (!hasKakao) { resolve(false); return; }
+        const s = document.createElement('script');
+        s.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_KEY}&libraries=services&autoload=false`;
+        s.onload = () => kakao.maps.load(() => resolve(true));
+        s.onerror = () => resolve(false);
+        document.head.appendChild(s);
+      });
+    }
+
+    function initMap() {
+      const container = document.getElementById('map');
+      map = new kakao.maps.Map(container, {
+        center: new kakao.maps.LatLng(35.8693, 128.5961),
+        level: 5
+      });
+      geocodeAll();
+    }
+
+    function geocodeAll() {
+      const cached = JSON.parse(localStorage.getItem('daegu_coords') || '{}');
+      const geocoder = new kakao.maps.services.Geocoder();
+      const places_service = new kakao.maps.services.Places();
+
+      places.forEach((p) => {
+        if (cached[p.id]) {
+          coords[p.id] = cached[p.id];
+          addMarker(p);
+          return;
+        }
+        const addr = cleanAddress(p.address);
+        geocoder.addressSearch(addr, (result, status) => {
+          if (status === kakao.maps.services.Status.OK && result.length > 0) {
+            const c = { lat: parseFloat(result[0].y), lng: parseFloat(result[0].x) };
+            coords[p.id] = c;
+            cached[p.id] = c;
+            localStorage.setItem('daegu_coords', JSON.stringify(cached));
+            addMarker(p);
+          } else {
+            places_service.keywordSearch(p.name + ' 대구', (data, st) => {
+              if (st === kakao.maps.services.Status.OK && data.length > 0) {
+                const c = { lat: parseFloat(data[0].y), lng: parseFloat(data[0].x) };
+                coords[p.id] = c;
+                cached[p.id] = c;
+                localStorage.setItem('daegu_coords', JSON.stringify(cached));
+                addMarker(p);
+              }
+            });
+          }
+        });
+      });
+    }
+
+    function addMarker(p) {
+      if (!coords[p.id] || !map) return;
+      const position = new kakao.maps.LatLng(coords[p.id].lat, coords[p.id].lng);
+      const marker = new kakao.maps.Marker({ position, map, title: p.name });
+      kakao.maps.event.addListener(marker, 'click', () => {
+        const card = document.getElementById('card-' + p.id);
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          highlightCard(p.id);
+        }
+      });
+      markers[p.id] = marker;
+      updateMarkerVisibility();
+    }
+
+    function updateMarkerVisibility() {
+      Object.entries(markers).forEach(([id, m]) => {
+        const p = places.find(x => x.id === id);
+        const visible = !p ? false : (activeTag === 'all' || p.tag === activeTag);
+        m.setMap(visible ? map : null);
+      });
+    }
+
+    function highlightCard(id) {
+      document.querySelectorAll('.card.highlighted').forEach(c => c.classList.remove('highlighted'));
+      const c = document.getElementById('card-' + id);
+      if (c) {
+        c.classList.add('highlighted');
+        setTimeout(() => c.classList.remove('highlighted'), 1800);
+      }
+    }
+
+    function focusMarker(id) {
+      const m = markers[id];
+      if (m && map) {
+        map.panTo(m.getPosition());
+      }
+    }
+
+    /* ---------- Supabase ---------- */
+    async function initSupabase() {
+      if (!hasSupabase) {
+        document.getElementById('setupNotice').style.display = 'block';
+        document.getElementById('syncStatus').textContent = 'OFFLINE · SETUP NEEDED';
+        return;
+      }
+      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      try {
+        await Promise.all([loadVotes(), loadComments(), loadSuggestions()]);
+        subscribeChannels();
+        document.getElementById('syncStatus').textContent = 'SYNCED · LIVE';
+      } catch (e) {
+        console.error(e);
+        document.getElementById('syncStatus').textContent = 'SYNC ERROR';
+        toast('SUPABASE CONNECTION ERROR');
+      }
+    }
+
+    async function loadVotes() {
+      const { data, error } = await supabase.from('votes').select('*');
+      if (error) throw error;
+      votes = {};
+      (data || []).forEach(v => {
+        if (!votes[v.place_id]) votes[v.place_id] = [];
+        votes[v.place_id].push(v.user_name);
+      });
+    }
+    async function loadComments() {
+      const { data, error } = await supabase.from('comments').select('*').order('created_at', { ascending: true });
+      if (error) throw error;
+      comments = {};
+      (data || []).forEach(c => {
+        if (!comments[c.place_id]) comments[c.place_id] = [];
+        comments[c.place_id].push(c);
+      });
+    }
+    async function loadSuggestions() {
+      const { data, error } = await supabase.from('suggestions').select('*').order('created_at', { ascending: false });
+      if (error) throw error;
+      suggestions = data || [];
+    }
+    function subscribeChannels() {
+      supabase.channel('daegu_votes').on('postgres_changes', { event: '*', schema: 'public', table: 'votes' }, async () => {
+        await loadVotes(); renderPlaces(); updateStats();
+      }).subscribe();
+      supabase.channel('daegu_comments').on('postgres_changes', { event: '*', schema: 'public', table: 'comments' }, async () => {
+        await loadComments(); renderPlaces();
+      }).subscribe();
+      supabase.channel('daegu_suggestions').on('postgres_changes', { event: '*', schema: 'public', table: 'suggestions' }, async () => {
+        await loadSuggestions(); renderSuggestions();
+      }).subscribe();
+    }
+
+    async function toggleVote(placeId) {
+      const name = getUserName();
+      if (!name) { toast('NAME REQUIRED'); document.getElementById('userName').focus(); return; }
+      if (!supabase) { toast('SETUP REQUIRED'); return; }
+      const current = votes[placeId] || [];
+      const has = current.includes(name);
+      votes[placeId] = has ? current.filter(n => n !== name) : [...current, name];
+      renderPlaces();
+      updateStats();
+      try {
+        if (has) {
+          await supabase.from('votes').delete().eq('place_id', placeId).eq('user_name', name);
+        } else {
+          await supabase.from('votes').insert({ place_id: placeId, user_name: name });
+        }
+      } catch (e) {
+        toast('VOTE FAILED');
+        await loadVotes(); renderPlaces(); updateStats();
+      }
+    }
+
+    async function submitComment(placeId) {
+      const name = getUserName();
+      if (!name) { toast('NAME REQUIRED'); return; }
+      if (!supabase) { toast('SETUP REQUIRED'); return; }
+      const input = document.getElementById('cinput-' + placeId);
+      const body = input.value.trim();
+      if (!body) return;
+      input.value = '';
+      try {
+        await supabase.from('comments').insert({ place_id: placeId, user_name: name, body });
+      } catch (e) { toast('COMMENT FAILED'); return; }
+      await loadComments();
+      renderPlaces();
+      const c = document.getElementById('comments-' + placeId);
+      if (c) c.classList.add('open');
+    }
+
+    async function submitSuggestion() {
+      const name = getUserName();
+      if (!name) { toast('NAME REQUIRED'); return; }
+      if (!supabase) { toast('SETUP REQUIRED'); return; }
+      const placeName = document.getElementById('sgName').value.trim();
+      const tag = document.getElementById('sgTag').value;
+      const address = document.getElementById('sgAddress').value.trim();
+      const description = document.getElementById('sgDesc').value.trim();
+      if (!placeName) { toast('PLACE NAME REQUIRED'); return; }
+      try {
+        await supabase.from('suggestions').insert({ user_name: name, place_name: placeName, address, description, tag });
+      } catch (e) { toast('SUGGESTION FAILED'); return; }
+      ['sgName','sgTag','sgAddress','sgDesc'].forEach(id => document.getElementById(id).value = '');
+      await loadSuggestions();
+      renderSuggestions();
+      toast('SUBMITTED 👌');
+    }
+
+    /* ---------- 렌더 ---------- */
+    function renderTagBar() {
+      const bar = document.getElementById('tagBar');
+      const counts = { all: places.length };
+      TAG_ORDER.forEach(t => { counts[t] = places.filter(p => p.tag === t).length; });
+      const items = [{ tag: 'all', label: '전체' }, ...TAG_ORDER.map(t => ({ tag: t, label: t }))];
+      bar.innerHTML = items.map(b => `
+        <button class="tag-btn ${activeTag === b.tag ? 'active' : ''}" data-tag="${escapeHtml(b.tag)}">
+          ${escapeHtml(b.label)} <span class="count">[${counts[b.tag] || 0}]</span>
+        </button>
+      `).join('');
+      bar.querySelectorAll('.tag-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeTag = btn.dataset.tag;
+          renderTagBar();
+          renderPlaces();
+          updateMarkerVisibility();
+        });
+      });
+    }
+
+    function renderPlaces() {
+      const col = document.getElementById('listCol');
+      const filtered = activeTag === 'all' ? places : places.filter(p => p.tag === activeTag);
+      if (filtered.length === 0) {
+        col.innerHTML = '<div class="empty">NO PLACES IN THIS CATEGORY</div>';
+        return;
+      }
+      col.innerHTML = filtered.map((p, i) => placeCardHTML(p, i)).join('');
+
+      filtered.forEach(p => {
+        document.getElementById('vote-' + p.id)?.addEventListener('click', () => toggleVote(p.id));
+        document.getElementById('ctoggle-' + p.id)?.addEventListener('click', () => {
+          document.getElementById('comments-' + p.id)?.classList.toggle('open');
+        });
+        document.getElementById('csubmit-' + p.id)?.addEventListener('click', () => submitComment(p.id));
+        document.getElementById('cinput-' + p.id)?.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') submitComment(p.id);
+        });
+        document.getElementById('card-' + p.id)?.addEventListener('mouseenter', () => focusMarker(p.id));
+      });
+    }
+
+    function placeCardHTML(p, i) {
+      const voters = votes[p.id] || [];
+      const myName = getUserName();
+      const myVote = voters.includes(myName);
+      const cmts = comments[p.id] || [];
+      const votersLabel = voters.length > 0
+        ? `<span class="voters">${voters.slice(0, 3).map(escapeHtml).join(', ')}${voters.length > 3 ? ` 외 ${voters.length - 3}명` : ''}</span>`
+        : '';
+
+      return `
+        <div class="card" id="card-${p.id}">
+          <div class="card-eyebrow">PLACE ${String(i+1).padStart(2,'0')}</div>
+          <div class="card-head">
+            <div class="card-num">${i+1}</div>
+            <div class="card-title">${escapeHtml(p.name)}</div>
+            <div class="card-tag">${escapeHtml(p.tag)}</div>
+          </div>
+          <div class="card-address">${escapeHtml(p.address)}</div>
+          <div class="card-desc">${escapeHtml(p.description)}</div>
+          <div class="card-actions">
+            <button class="vote-btn ${myVote ? 'voted' : ''}" id="vote-${p.id}" title="${myVote ? '취소' : '동의'}">
+              👍 <span class="count">${voters.length}</span>
+            </button>
+            ${votersLabel}
+            <button class="comment-toggle" id="ctoggle-${p.id}">
+              💬 <span class="count">${cmts.length}</span>
+            </button>
+            <a class="kakao-link" href="https://map.kakao.com/?q=${encodeURIComponent(p.address)}" target="_blank" rel="noopener">↗ MAP</a>
+          </div>
+          <div class="comments" id="comments-${p.id}">
+            ${cmts.length === 0 ? '<div class="comments-empty">NO COMMENTS YET.</div>' : ''}
+            ${cmts.map(c => `
+              <div class="comment">
+                <span class="comment-author">${escapeHtml(c.user_name)}</span>
+                <span class="comment-meta">${formatTime(c.created_at)}</span>
+                <div class="comment-body">${escapeHtml(c.body)}</div>
+              </div>
+            `).join('')}
+            <div class="comment-form">
+              <input id="cinput-${p.id}" placeholder="코멘트 작성" maxlength="200">
+              <button id="csubmit-${p.id}">SUBMIT</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSuggestions() {
+      const list = document.getElementById('suggestionsList');
+      if (suggestions.length === 0) {
+        list.innerHTML = '<p style="color:var(--ink);font-size:14px;font-weight:600;grid-column:1/-1;padding:8px 0;border-bottom:1px dashed var(--ink);padding-bottom:16px;">아직 추천된 장소가 없어.</p>';
+        return;
+      }
+      list.innerHTML = suggestions.map(s => `
+        <div class="suggestion-card">
+          <div class="sg-name">${escapeHtml(s.place_name)}</div>
+          <div class="sg-meta">${escapeHtml(s.tag || '기타')} · ${escapeHtml(s.user_name)} · ${formatTime(s.created_at)}</div>
+          ${s.address ? `<div class="sg-addr">${escapeHtml(s.address)}</div>` : ''}
+          ${s.description ? `<div class="sg-desc">${escapeHtml(s.description)}</div>` : ''}
+        </div>
+      `).join('');
+    }
+
+    function updateStats() {
+      const name = getUserName();
+      document.getElementById('totalCount').textContent = places.length;
+      document.getElementById('myVotesCount').textContent = name
+        ? Object.values(votes).filter(arr => arr.includes(name)).length
+        : 0;
+      document.getElementById('allVotesCount').textContent = Object.values(votes).reduce((s, arr) => s + arr.length, 0);
+    }
+
+    /* ---------- init ---------- */
+    async function init() {
+      const inp = document.getElementById('userName');
+      inp.value = getUserName();
+      updateUserStatus();
+      inp.addEventListener('input', e => {
+        setUserName(e.target.value);
+        updateUserStatus();
+        updateStats();
+        renderPlaces();
+      });
+
+      document.getElementById('sgSubmit').addEventListener('click', submitSuggestion);
+
+      const kakaoLoaded = await loadKakaoSDK();
+      if (kakaoLoaded) {
+        initMap();
+      } else {
+        document.getElementById('map').outerHTML = '<div class="map-placeholder">MAP REQUIRES KAKAO_KEY</div>';
+      }
+
+      await initSupabase();
+
+      renderTagBar();
+      renderPlaces();
+      renderSuggestions();
+      updateStats();
+    }
+
+    init();
+  </script>
+</body>
+</html>
